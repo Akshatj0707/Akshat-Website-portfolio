@@ -112,6 +112,31 @@ const PROJECTS = [
     techStack        : ['Python','OpenCV','face_recognition','NumPy','Machine Learning'],
     githubUrl        : 'https://github.com/Akshatj0707',
     published        : true
+  }  ,{
+    title            : 'Crave — Food Delivery & Restaurant Management Platform',
+    slug             : 'crave-food-delivery-platform',
+    category         : 'Web Development',
+    featured         : true, order: 6, year: 2025,
+    client           : 'Personal Project',
+    role             : 'Full-Stack Developer',
+    duration         : 'Ongoing',
+    description      : 'A full-stack food delivery and restaurant management platform — Crave. Features include multi-restaurant browsing, real-time order tracking, restaurant admin dashboard, menu management, cart system, user authentication, and order history. Built with modern full-stack technologies.',
+    shortDescription : 'Full-stack food delivery platform with restaurant management dashboard.',
+    coverImage       : 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80',
+    tags             : ['React.js','Node.js','Express.js','MongoDB','JWT','REST API','Full-Stack'],
+    techStack        : ['React.js','Node.js','Express.js','MongoDB','JWT','REST API'],
+    metrics          : [
+      { label: 'Type',     value: 'Full-Stack', unit: 'Platform' },
+      { label: 'Features', value: '10+',        unit: 'modules'  }
+    ],
+    caseStudy: {
+      problem  : 'Building a complete food delivery ecosystem with separate interfaces for customers, restaurants, and administrators.',
+      approach : 'Designed multi-role architecture with customer app, restaurant dashboard, and order management system.',
+      solution : 'Full-stack platform with real-time order tracking, menu management, and restaurant analytics.',
+      results  : 'Complete food delivery platform with end-to-end order flow management.'
+    },
+    githubUrl : 'https://github.com/Akshatj0707/Crave-food-delivery-and-restaurant-management-platform',
+    published : true
   }
 ];
 

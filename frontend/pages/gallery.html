@@ -178,6 +178,31 @@
         </div>
       </div>
 
+      <!-- Crave — Food Delivery Platform -->
+      <div class="project-detail-card reveal" style="border-color:rgba(255,140,50,.25);background:rgba(255,140,50,.03);">
+        <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:#ff8c42;padding:3px 10px;border-radius:999px;">🍽️ Food Tech</span>
+              <span style="font-size:9px;font-weight:700;letter-spacing:.1em;color:#ffaa33;background:rgba(255,160,50,.1);border:1px solid rgba(255,160,50,.3);padding:3px 10px;border-radius:999px;">🆕 Latest</span>
+            </div>
+            <div style="font-family:var(--font-serif);font-size:24px;font-weight:700;margin-bottom:4px;">Crave — Food Delivery & Restaurant Management Platform</div>
+            <div style="font-size:13px;color:var(--on-surface-dim);">Personal Project · 2025</div>
+          </div>
+          <a href="https://github.com/Akshatj0707/Crave-food-delivery-and-restaurant-management-platform" target="_blank" class="btn-ghost" style="color:#ff8c42;border-color:rgba(255,140,50,.3);">GitHub <span class="material-symbols-outlined" style="font-size:14px;">north_east</span></a>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:var(--on-surface-dim);margin-bottom:20px;">A full-stack food delivery and restaurant management platform. Features multi-restaurant browsing, real-time order tracking, restaurant admin dashboard, menu management, cart system, user authentication, and complete order history — built with production-grade MERN stack architecture.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">React.js</span>
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">Node.js</span>
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">Express.js</span>
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">MongoDB</span>
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">JWT Auth</span>
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">REST API</span>
+          <span class="tech-chip" style="border-color:rgba(255,140,50,.3);color:#ff8c42;">Full-Stack</span>
+        </div>
+      </div>
+
     </div>
   </section>
 </main>
@@ -209,15 +234,33 @@ function renderGallery(projects) {
   const grid = document.getElementById('gallery-grid');
   const countEl = document.getElementById('project-count');
   if(countEl) countEl.textContent = projects.length + ' PROJECTS';
-  const heights = [320,420,360,480,300,440,380];
-  grid.innerHTML = projects.map((p, i) => `
-    <div class="project-card masonry-item" style="height:${heights[i%heights.length]}px;" data-category="${p.category}">
+  const heights = [320,420,360,480,300,440,380,320];
+  // Add Crave project if not already from DB
+  const craveExists = projects.some(p => p.slug === 'crave-food-delivery-platform');
+  if (!craveExists) {
+    projects.push({
+      _id: 'crave-local',
+      title: 'Crave — Food Delivery & Restaurant Management',
+      slug: 'crave-food-delivery-platform',
+      category: 'Web Development',
+      year: 2025,
+      coverImage: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80'
+    });
+  }
+  grid.innerHTML = projects.map((p, i) => {
+    const isGithubOnly = p._id === 'crave-local';
+    const href = isGithubOnly
+      ? 'https://github.com/Akshatj0707/Crave-food-delivery-and-restaurant-management-platform'
+      : '#';
+    const target = isGithubOnly ? 'target="_blank"' : '';
+    return `<a href="${href}" ${target} class="project-card masonry-item" style="height:${heights[i%heights.length]}px;">
       <img src="${p.coverImage}" alt="${p.title}" loading="lazy" style="height:100%;"/>
       <div class="project-card-overlay">
-        <div class="project-card-category">${p.category} · ${p.year}</div>
+        <div class="project-card-category">${p.category} · ${p.year}${isGithubOnly ? ' · 🆕' : ''}</div>
         <div class="project-card-title">${p.title}</div>
       </div>
-    </div>`).join('');
+    </a>`;
+  }).join('');
   grid.querySelectorAll('.project-card').forEach((el,i) => {
     el.style.opacity='0'; el.style.transform='translateY(20px)';
     setTimeout(()=>{ el.style.transition='opacity .5s,transform .5s var(--ease-spring)'; el.style.opacity='1'; el.style.transform='none'; }, i*60);
